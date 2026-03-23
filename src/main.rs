@@ -245,7 +245,8 @@ fn handle_input_set(card: &str, channel: &str, control: &str, value: &str) -> Re
 
             alsa::set_volume(card, ctrl, gain)?;
 
-            // Setting input gain knocks the RME card in a weird state resulting in a volume change.
+            // Bug in the drivers:
+            // Setting input gain gets the RME card in a weird state and changing hp and main volume until you move them.
             // Nudge outputs to reset them to current volume.
             nudge_volume(card, alsa::MAIN_OUT_LEFT)?;
             nudge_volume(card, alsa::MAIN_OUT_RIGHT)?;
@@ -284,9 +285,6 @@ fn handle_input_set(card: &str, channel: &str, control: &str, value: &str) -> Re
     Ok(())
 }
 
-/// Parse a gain value (dB) into a raw ALSA integer.
-/// Mic inputs: 1 dB steps (raw == dB). Line inputs: 0.5 dB steps (raw == dB * 2).
-/// Accepts both "3.5" and "3,5".
 fn parse_gain(value: &str, channel: &str) -> Result<i32, String> {
     let db: f64 = value.replace(',', ".")
         .parse()
@@ -332,8 +330,6 @@ fn parse_sensitivity_value(value: &str) -> Result<&'static str, String> {
     }
 }
 
-/// Parse a volume value string and return the new percentage (integer, 0–100).
-/// Supports: "50%" (absolute), "+5%" (relative up), "-5%" (relative down)
 fn parse_volume_value(card: &str, control: &str, value: &str) -> Result<f64, String> {
     let value = value.trim().trim_end_matches('%');
 
