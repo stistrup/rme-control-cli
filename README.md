@@ -22,7 +22,7 @@ rme-cli set headphones +10
 **Mic inputs:** `mic1`, `mic2`.  
 ```
 Parameters: 
-gain      0-64 dB
+gain      0-65 dB
 phantom   on/off
 pad       on/off
 
@@ -34,7 +34,6 @@ rme-cli set mic2 pad off
 
 
 **Line inputs**: `line1`, `line2`  
-Parameters: `gain`, `sensitivity`
 ```
 Parameters:
 gain          0-9 dB (supports 0.5 incraments)
@@ -47,6 +46,7 @@ rme-cli set line2 sensitivity low
 ```
 
 ## Installation
+Requires rust installed
 ```
 cargo build --release
 cp target/release/rme-cli ~/.local/bin/
