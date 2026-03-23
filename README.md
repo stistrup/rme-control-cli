@@ -1,7 +1,7 @@
-# RME Control CLI
+# RME Babyface CLI
 ### Simple cli wrapper for controling RME Babyface Pro
 
-A CLI for controlling the RME Babyface Pro audio interface on Linux.
+A CLI for controlling the RME Babyface Pro audio interface on Linux. I've perpously left out the controls available for the Babyface as this is what i use. But if any of you use this tool, and would want those extra routing etc, create an issue and i'll probably include it. 
 
 #### Usage
 ```
@@ -17,12 +17,12 @@ rme-cli get main
 rme-cli set main 75%
 rme-cli set headphones +10
 ```
-> Supports +/- [some percentage]
+> 0-100 percentage is translated with a exponential curve so percievable volume matches percentage as good as i could get it. 
 
 **Mic inputs:** `mic1`, `mic2`.  
 ```
 Parameters: 
-gain      0-64 dB
+gain      0-65 dB
 phantom   on/off
 pad       on/off
 
@@ -34,19 +34,19 @@ rme-cli set mic2 pad off
 
 
 **Line inputs**: `line1`, `line2`  
-Parameters: `gain`, `sensitivity`
 ```
 Parameters:
 gain          0-9 dB (supports 0.5 incraments)
 sensitivity   low/high (-10dBv/+4dBu)
 
 Example:
-rme-cli set line1 gain 3.5            # 0-9 dB (supports half dB steps)
-rme-cli set line1 sensitivity high    # +4dBu
-rme-cli set line2 sensitivity low     # -10dBV
+rme-cli set line1 gain 3.5
+rme-cli set line1 sensitivity high
+rme-cli set line2 sensitivity low
 ```
 
 ## Installation
+Requires rust installed
 ```
 cargo build --release
 cp target/release/rme-cli ~/.local/bin/
