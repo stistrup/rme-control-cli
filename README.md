@@ -1,7 +1,7 @@
 # RME Control CLI
 ### Simple cli wrapper for controling RME Babyface Pro
 
-A CLI for controlling the RME Babyface Pro audio interface on Linux.
+A CLI for controlling the RME Babyface Pro audio interface on Linux. I've perpously left out the controls available for the Babyface as this is what i use. But if any of you use this tool, and would want those extra routing etc, create an issue and i'll probably include it. 
 
 #### Usage
 ```
