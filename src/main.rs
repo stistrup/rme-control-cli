@@ -284,9 +284,6 @@ fn handle_input_set(card: &str, channel: &str, control: &str, value: &str) -> Re
     Ok(())
 }
 
-/// Write a nudged value first, then the real value, to force the hardware to re-latch.
-/// Read the current raw value and write it back with a one-step nudge first,
-/// forcing the RME hardware to re-latch after an input gain change resets it.
 /// Parse a gain value (dB) into a raw ALSA integer.
 /// Mic inputs: 1 dB steps (raw == dB). Line inputs: 0.5 dB steps (raw == dB * 2).
 /// Accepts both "3.5" and "3,5".
@@ -335,8 +332,6 @@ fn parse_sensitivity_value(value: &str) -> Result<&'static str, String> {
     }
 }
 
-/// Parse a volume value string and return the new percentage.
-/// Supports: "50%" (absolute), "+5%" (relative up), "-5%" (relative down)
 /// Parse a volume value string and return the new percentage (integer, 0–100).
 /// Supports: "50%" (absolute), "+5%" (relative up), "-5%" (relative down)
 fn parse_volume_value(card: &str, control: &str, value: &str) -> Result<f64, String> {
