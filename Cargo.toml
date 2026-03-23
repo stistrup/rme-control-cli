@@ -1,0 +1,13 @@
+[package]
+name = "rme-cli"
+version = "0.1.0"
+edition = "2021"
+description = "CLI tool for controlling RME Babyface Pro audio interface"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+regex = "1"
+
+[[bin]]
+name = "rme-cli"
+path = "src/main.rs"
