@@ -17,7 +17,7 @@ rme-cli get main
 rme-cli set main 75%
 rme-cli set headphones +10
 ```
-> Supports +/- [some percentage]
+> 0-100 percentage is translated with a exponential curve so percievable volume matches percentage as good as i could get it. 
 
 **Mic inputs:** `mic1`, `mic2`.  
 ```
@@ -41,9 +41,9 @@ gain          0-9 dB (supports 0.5 incraments)
 sensitivity   low/high (-10dBv/+4dBu)
 
 Example:
-rme-cli set line1 gain 3.5            # 0-9 dB (supports half dB steps)
-rme-cli set line1 sensitivity high    # +4dBu
-rme-cli set line2 sensitivity low     # -10dBV
+rme-cli set line1 gain 3.5
+rme-cli set line1 sensitivity high
+rme-cli set line2 sensitivity low
 ```
 
 ## Installation
