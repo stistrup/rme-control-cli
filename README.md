@@ -1,7 +1,9 @@
 # RME Babyface CLI
 ### Simple cli wrapper for controling RME Babyface Pro
 
-A CLI for controlling the RME Babyface Pro audio interface on Linux. I've perpously left out the controls available for the Babyface as this is what i use. But if any of you use this tool, and would want those extra routing etc, create an issue and i'll probably include it. 
+A CLI for controlling the RME Babyface Pro audio interface on Linux using the controls exposed in ALSA. I've perpously left out the controls available for the Babyface as this is what i use. But if any of you use this tool, and would want those extra routing etc, create an issue and i'll probably include it.
+
+Why use this instead of just useing the alsa controls? Well convenience is one, but there are some translation that makes this nicer to use. Volume 0-100, exponantiontially translated to better mimic how volume is percieved, translate the line inputs gain to dB instead of the 18 half dB steps, and maybe the most important is fixing a bug within the current drivers: When changing gain on any input, the headphones and main outputs changes the volume and gets stuck in a weird state, where you need to "nudge" those controls to make them jump back. (This can be verified in alsa mixer, set volume to loud, change gain, and hear volume go way down, nudge the volume again and it's back). This "nudging" is included in the CLI. I'd say it's hard to hear that the nudging even happens. Not super pretty way of solving it, but it works pretty well.  
 
 #### Usage
 ```
@@ -12,12 +14,12 @@ rme-cli set <channel> <parameter> <value>
 Output channels: `main`, `headphones`
 ```
 Set in 0-100 (with optional '%')
+Either in absolute or with +/-
 
 rme-cli get main
 rme-cli set main 75%
 rme-cli set headphones +10
 ```
-> 0-100 percentage is translated with a exponential curve so percievable volume matches percentage as good as i could get it. 
 
 **Mic inputs:** `mic1`, `mic2`.  
 ```
