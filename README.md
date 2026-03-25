@@ -1,7 +1,7 @@
 # RME Babyface CLI
 ### Simple cli wrapper for controling RME Babyface Pro
 
-A CLI for controlling the RME Babyface Pro audio interface on Linux using the controls exposed in ALSA. I've perpously left out some controls available for the Babyface only done the ones i use. If you use this tool, and would want those extra routing remaining 8 inputs etc, create an issue and i'll probably include it.
+A CLI for controlling the RME Babyface Pro audio interface on Linux using the controls exposed in ALSA. I've perpously left out some controls available and only include the ones i use or find useful. If you use this tool, and would want those extra routing remaining 8 inputs etc, create an issue and i'll probably include it.
 
 Might seem unnecessary to do a CLI for something thats available as ALSA controls. But point of me doing it was:
 - Finds the card for you
