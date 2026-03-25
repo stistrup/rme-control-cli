@@ -6,7 +6,7 @@ A CLI for controlling the RME Babyface Pro audio interface on Linux using the co
 Might seem unnecessary to do a CLI for something thats available as ALSA controls. But point of me doing it was:
 - Finds the card for you
 - Nicer commands
-- Translates main output volumes to percieved volume which makes it nicer to use
+- Translates main output volumes on an exponentioal curve to better match percieved volume which makes it nicer to use
 - Translates line input gain to represent dB (0-9) instead of those halv db steps (0-18). You can still set half db steps with "3.5" for example
 - Compensates for bug where adjusting gain changes volume and keeps it there until you adjust it. The workaround nudges the volume back and forth with smallest step possible so it goes back to where you had it before adjusting gain.
 > If you don't know what bug i'm talking about: open alsa mixer, set main out to over 70%, adjust input gain of any of the first 4 inputs and you'll hear volume goes down until you touch both main outs. Applies to headphones too.
