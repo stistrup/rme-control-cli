@@ -3,8 +3,6 @@
 
 A CLI for controlling the RME Babyface Pro audio interface on Linux using the controls exposed in ALSA. I've perpously left out the controls available for the Babyface as this is what i use. But if any of you use this tool, and would want those extra routing etc, create an issue and i'll probably include it.
 
-Why use this instead of just useing the alsa controls? Well convenience is one, but there are some translation that makes this nicer to use. Volume 0-100, exponantiontially translated to better mimic how volume is percieved, translate the line inputs gain to dB instead of the 18 half dB steps (3.5 instead of 7 for instance).  
-
 Might seem unnecessary to do a CLI for something thats available as ALSA controls. But point of me doing it was:
 - Finds the card for you
 - Nicer commands
