@@ -5,7 +5,13 @@ A CLI for controlling the RME Babyface Pro audio interface on Linux using the co
 
 Why use this instead of just useing the alsa controls? Well convenience is one, but there are some translation that makes this nicer to use. Volume 0-100, exponantiontially translated to better mimic how volume is percieved, translate the line inputs gain to dB instead of the 18 half dB steps (3.5 instead of 7 for instance).  
 
-But maybe the most important is fixing a bug within the current drivers: When changing gain on any input, the headphones and main outputs changes the volume and gets stuck in a weird state, where you need to "nudge" those controls to make them jump back. (This can be verified in alsa mixer, set volume to loud, change gain, and hear volume go way down, nudge the volume again and it's back). This "nudging" is included in the CLI by changing volume by minimum amount and back. Not super pretty way of solving it, but couldn't think of anything better when adjusting input gain. If you have main output set to 100% and adjust gain continiously, you will hear some "studdering" as the volume go down and back to where you had it, but to me it's an acceptable side-effect to not have to manually readjust main output and headphones after adjusting input gain. 
+Might seem unnecessary to do a CLI for something thats available as ALSA controls. But point of me doing it was:
+- Finds the card for you
+- Nicer commands
+- Translates main output volumes to percieved volume which makes it nicer to use
+- Translates line input gain to represent dB (0-9) instead of those halv db steps (0-18). You can still set half db steps with "3.5" for example
+- Compensates for bug where adjusting gain changes volume and keeps it there until you adjust it. The workaround nudges the volume back and forth with smallest step possible so it goes back to where you had it before adjusting gain.
+> If you don't know what bug i'm talking about: open alsa mixer, set main out to over 70%, adjust input gain of any of the first 4 inputs and you'll hear volume goes down until you touch both main outs. Applies to headphones too.
 
 #### Usage
 ```
